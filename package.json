@@ -1,0 +1,37 @@
+{
+  "name": "barebone-cms",
+  "version": "0.0.5",
+  "description": "rough attempt at a way-too-simple CMS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cms",
+    "content",
+    "management",
+    "barebones"
+  ],
+  "author": {
+    "name": "distrill"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/distrill/barebone-cms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/distrill/barebone-cms.git"
+  },
+  "readme": "README.md",
+  "dependencies": {
+    "body-parser": "~1.8.0",
+    "mongoose": "~3.8.15",
+    "multer": "~0.1.8"
+  },
+  "gitHead": "e6db087cb5a908304545dbd43d97d7ae16d792c1",
+  "bugs": {
+    "url": "https://github.com/distrill/barebone-cms/issues"
+  },
+  "_id": "barebone-cms@0.0.4",
+  "_shasum": "63166335466e2e96fd84478dc8a20d1d65bf4e8a",
+  "_from": "barebone-cms@*"
+}
