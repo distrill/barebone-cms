@@ -15,7 +15,7 @@ bareboneCMS.initialize( app );
 app.get( '/', function( req, res ) {
     bareboneCMS.renderNewCat( req, res );
 });
-app.post( function( req, res ) {
+app.post( '/', function( req, res ) {
     bareboneCMS.createNewCat( req.body );
 });
 
