@@ -1,6 +1,6 @@
 {
   "name": "barebone-cms",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "rough attempt at a way-too-simple CMS",
   "main": "index.js",
   "scripts": {
