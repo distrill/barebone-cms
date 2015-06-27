@@ -16,7 +16,7 @@ app.get( '/', function( req, res ) {
     bareboneCMS.renderNewCat( req, res );
 });
 app.post( '/', function( req, res ) {
-    bareboneCMS.createNewCat( req.body );
+    bareboneCMS.createNewCat( req, res );
 });
 
 app.listen( 3030, '127.0.0.1' );
