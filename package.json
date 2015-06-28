@@ -1,6 +1,6 @@
 {
   "name": "barebone-cms",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "rough attempt at a way-too-simple CMS",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "type": "git",
     "url": "git+https://github.com/distrill/barebone-cms.git"
   },
-  "readme": "README.md",
   "dependencies": {
     "body-parser": "~1.8.0",
     "mongoose": "~3.8.15",
