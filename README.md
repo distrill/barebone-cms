@@ -1,6 +1,6 @@
 very early stages.
 
-#### 0.0.5
+#### 0.0.7
 There is not very much in the way of flexibility at this point, and really only one feature is working, but we'll take it for the time being.
 
 ```javascript
