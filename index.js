@@ -1,25 +1,17 @@
 var bodyParser = require( 'body-parser' ),
-    mongoose = require( 'mongoose' );
-
-mongoose.connect( 'mongodb://localhost/bcms' );
-
-var Cat = mongoose.model( 'Cat', { name: String });
+    mongoose = require( 'mongoose' ),
+    multer = require( 'multer' ),
+    config = require( './config/settings' );
 
 module.exports.initialize = function( app ) {
+    mongoose.connect( config.db );
+    app.use( multer( config.multer ));
     app.use( bodyParser.urlencoded( {
         extended: true
     }));
     app.use( bodyParser.json() );
 };
 
-module.exports.renderNewCat = function( req, res ) {
-    res.sendFile( __dirname + '/views/index.html' );
-}
+module.exports.cats = require( './lib/cats.js' );
 
-module.exports.createNewCat = function( req, res ) {
-    var kitty = new Cat( { name: req.body.name });
-    kitty.save( function( err ) {
-        if( err ) console.log( err );
-        res.redirect( '/' );
-    });
-}
+module.exports.articles = require( './lib/articles.js' );
