@@ -1,7 +1,7 @@
 very early stages.
 
-#### 0.0.7
-There is not very much in the way of flexibility at this point, and really only one feature is working, but we'll take it for the time being.
+#### 0.1.0
+Basic CRUD functionality for a simple CMS
 
 ```javascript
 var express = require( 'express' ),
@@ -9,23 +9,33 @@ var express = require( 'express' ),
 
 var app = express();
 
+//  barebone-cms CRUD example usage
+///////////////////////////////////////////////////////
 barebone.initialize( app );
 
-app.get( '/', function( req, res ) {
-    barebone.articles.readAll( function( results ) {
-        res.send( results );
-    });
-});
-app.get( '/newArticle', function( req, res ) {
-    barebone.articles.renderNew( req, res );
-});
-app.post( '/newArticle', function( req, res ) {
-    barebone.articles.create( req, res );
-});
+app .route( '/' )
+    .get( barebone.articles.readAll );
+
+app .route( '/newArticle' )
+    .get( barebone.articles.renderNew )
+    .post( barebone.articles.create );
+
+app .route( '/article/update/:articleID' )
+    .get( barebone.articles.renderUpdate )
+    .post( barebone.articles.update );
+
+app .route( '/article/delete/:articleID' )
+    .get( barebone.articles.renderDelete )
+    .post( barebone.articles.delete );
+
+app .param( 'articleID', barebone.articles.byID );
+///////////////////////////////////////////////////////
+
+
 
 app.listen( 3030, '127.0.0.1' );
 
-console.log( 'temp app running at http://localhost:3030/' );
+console.log( 'CRUD app running at http://localhost:3030/' );
 ```
 
 The above example will get you a working form that connects to a mongo instance and adds a cat with the name in the form to it.
@@ -37,16 +47,19 @@ bareboneCMS takes care of configuring and connecting to the db, but the actual d
 #### available function calls:
 after the first four lines of code above:  
 ```javascript
-1.  barebone.article.readAll( callback, res, template ) // function is overloaded, see docs
-2.  barebone.article.renderNew( req, res, template )
-3.  barebone.article.create( req, res )
+1.  barebone.articles.renderNew( req, res, optionalTemplate )
+2.  barebone.article.readAll( callback, res, template ) //  function is overloaded, see docs
+3.  barebone.article.readOne( callback, res, template ) //  function is overloaded, see docs
+3.  barebone.articles.renderUpdate( req, res, optionalTemplate )
+4.  barebone.articles.renderDelete( req, res, optionalTemplate )
 
+5.  barebone.article.create( req, res )
+7.  barebone.article.update( req, res )
+8.  barebone.article.delete( req, res )
 
-4.  barebone.cat.readAll( callback, res, template ) // function is overloaded, see docs
-5.  barebone.cat.renderNew( req, res, template )
-6.  barebone.cat.create( req, res )
+9.  barebone.article.byID( req, res )
 ```
-In both cases of readAll( callback res, template ), there are two options for use. readAll( x, y z ) can be passed:  
+In case of readAll( callback res, template ), there are two options for use. readAll( x, y z ) can be passed:  
 -a callback function with a single parameter, the parameter is json object of the results.  
 OR  
 -res and req objects, followed by a template (containing appropriate template logic ie ejs with appropriate fields).
